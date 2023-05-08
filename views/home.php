@@ -1,5 +1,4 @@
 <?php
-//include '../conex.php';
 include '../scriptsPhp/funciones.php';
 $sql = "SELECT * FrOM products p";
 $resp = query($sql);
@@ -107,7 +106,7 @@ function getCategory($id)
                                 <?= $value['creation_date'] ?>
                             </td>
                             <td class=" px-6 py-4">
-                                <a href="createProduct.php?id=<?= $value['id'] ?>" class="font-medium text-white bg-yellow-500 rounded p-2 hover:bg-yellow-700">Editar</a>
+                                <a href="createProduct.php?action=update&id=<?= $value['id'] ?>" class="font-medium text-white bg-yellow-500 rounded p-2 hover:bg-yellow-700">Editar</a>
                                 <a href="../scriptsPhp/deleteProduct.php?id=<?= $value['id'] ?>" class="font-medium text-white bg-red-500 rounded p-2 hover:bg-red-700">Borrar</a>
                             </td>
                         </tr>

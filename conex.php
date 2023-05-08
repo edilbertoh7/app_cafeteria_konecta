@@ -10,7 +10,6 @@
  	}
  }
 
-
  function query($sql){
     conectar();
  	global $conex;
@@ -21,7 +20,6 @@
  function data($sql){
 
      $result = query($sql); 
- 	$resp = "";
  	foreach ($result as $resp ) {
         $resp = $resp;
  	}

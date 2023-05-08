@@ -12,7 +12,6 @@ if (!sessionStarted()) { ?>
 }
 
 if (isset($_GET['id'])) {
-    print_r($_GET);
     $id = $_GET['id'];
     $sql = "SELECT * FrOM products  where id = '$id'";
     $resp = query($sql);
@@ -20,6 +19,7 @@ if (isset($_GET['id'])) {
          para mostra los datos en el formulario cuando se va a editar*/
     }
 }
+//print_r($_GET);
 //consulto todas las categorias
 $sqlCategories = "SELECT * FROM categories";
 $respCategories = query($sqlCategories);
@@ -43,13 +43,19 @@ $respCategories = query($sqlCategories);
 
     <div class=" p-5 flex justify-center">
         <div class=" border-2 p-1 relative shadow-md sm:rounded-lg">
-            <form class="w-full max-w-lg" action="/scriptsPhp/saveProduct.php" method="post">
+            <?php
+            if ($_GET['action'] == "new") { ?>
+                <h1 class="text-white p-3 font-bold">Registrar un Nuevo Producto</h1>
+            <?php } else { ?>
+                <h1 class="text-white p-3 font-bold">Actualizar este producto</h1>
+            <?php } ?>
+            <form class="w-full max-w-lg p-3" action="/scriptsPhp/saveProduct.php" method="post">
                 <div class="flex flex-wrap -mx-3 mb-6">
                     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                         <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="name">
                             nombre
                         </label>
-                        <input type="hidden" name="id" id="id" value="<?= isset($_GET['id']) ? $row['id'] : '' ?>" >
+                        <input type="hidden" name="id" id="id" value="<?= isset($_GET['id']) ? $row['id'] : '' ?>">
                         <input required id="name" name="name" value="<?= isset($_GET['id']) ? $row['name_product'] : '' ?>" type="text" placeholder="Nombre producto" class="appearance-none block w-full bg-gray-200 text-gray-700 border 
                         border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none 
                         focus:bg-white">
